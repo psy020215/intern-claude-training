@@ -31,15 +31,15 @@ All interns follow these rules throughout the training:
 3. `/explain [concept]` before Googling
 4. Plan mode (Shift+Tab) before writing any pipeline
 
-## Lab Skills
+## Included Skills
 
-Three custom skills are provided for this training:
+Three skills are included in this repo:
 
 | Skill | Description |
 |-------|-------------|
-| `/log` | Record a session log entry with progress, blockers, and next steps |
+| `/log` | Record a session log entry — what you did, what broke, what you learned |
 | `/debug` | Structured root-cause debugging before escalating for help |
-| `/explain` | Get a plain-language explanation of a concept before looking it up |
+| `/explain` | Get an explanation of a concept anchored to the lab's context |
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ Three custom skills are provided for this training:
 ## Repository Structure
 
 ```
-.claude/skills/         ← lab skills (/log, /debug, /explain)
+.claude/skills/         ← /log, /debug, /explain
 .devcontainer/          ← Codespace configuration
 lab-context.md          ← lab context for Claude Code
 module1–module4/        ← training notebooks
