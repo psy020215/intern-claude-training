@@ -6,7 +6,7 @@ Complete every item below before sharing the Codespace link with a new cohort.
 
 ## 1. SRR Accession — Module 3
 
-**File to edit:** `module3-ngs-pipeline/data/sample/README.md`
+**File to edit:** `data/reference/README.md`
 
 Replace both instances of `[SRR_ACCESSION]` with the actual accession number for your cohort's dataset.
 
@@ -22,7 +22,7 @@ seqtk sample SRR######.fastq 500000 > SRR######_500k.fastq
 
 ---
 
-## 2. Lab Annotation GFF — Module 4 + Mini-Project
+## 2. Lab Annotation GFF — All Modules
 
 **File to place:** `data/reference/ec_annotation_20100903_DHK_cSRNA_with_ortho.gff`
 
@@ -33,17 +33,17 @@ cp /path/to/lab/data/ec_annotation_20100903_DHK_cSRNA_with_ortho.gff \
    data/reference/
 ```
 
-Used in Module 4 Exercise 7 (TSS distance analysis) and available to interns for their mini-project. Without it, Exercise 7 cannot run.
+Used in Module 2 (pandas exercises), Module 4 Exercise 7 (TSS distance analysis), and the mini-project.
 
 ---
 
 ## 3. Mini-Project Dataset — Modules 5–6
 
-**Directory:** `module5-6-miniproject/data/`
+**Directory:** `data/reference/`
 
-This directory is empty in the repo. Add the dataset before distributing:
+Add the cohort dataset to `data/reference/` before distributing:
 - Recommended: a subset of a real RNA-seq or ChIP-seq experiment from the lab
-- Include a brief `data/README.md` explaining the organism, condition, and experiment type (without giving away the biological answer)
+- Include a brief description in `data/reference/README.md` under "Mini-project — Cohort dataset"
 - Do not include raw FASTQ files larger than ~100 MB — use processed files (e.g., count matrices, peak BED files) where possible
 
 ---
@@ -79,9 +79,9 @@ Interns need a Claude.ai Pro plan account to use plan mode (Shift+Tab).
 
 ## 6. Final Checklist
 
-- [ ] `[SRR_ACCESSION]` replaced in `module3-ngs-pipeline/data/sample/README.md`
+- [ ] `[SRR_ACCESSION]` replaced in `data/reference/README.md`
 - [ ] `ec_annotation_20100903_DHK_cSRNA_with_ortho.gff` copied to `data/reference/`
-- [ ] `module5-6-miniproject/data/` contains the cohort dataset
+- [ ] Cohort dataset added to `data/reference/` with description in README
 - [ ] Codespace test-launched and all tools verified
 - [ ] Plan mode tested in Codespace terminal
 - [ ] All interns have Claude Pro plan accounts

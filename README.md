@@ -51,7 +51,7 @@ Three custom skills are provided for this training:
 .claude/skills/         ← /log, /debug, /explain
 .devcontainer/          ← Codespace configuration
 lab-context.md          ← lab context for Claude Code
-module1–module4/        ← training notebooks
-module5-6-miniproject/  ← independent project template
+notebooks/              ← all 5 training notebooks (01–05)
+data/reference/         ← shared reference data and downloads
 instructor/             ← rubric and solutions
 ```

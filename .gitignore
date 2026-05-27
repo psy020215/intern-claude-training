@@ -12,15 +12,14 @@ build/
 # Lab-internal reference files (instructor copies these; not committed)
 data/reference/ec_annotation_20100903_DHK_cSRNA_with_ortho.gff
 
-# Instructor-provided cohort dataset (not committed)
-module5-6-miniproject/data/*
-!module5-6-miniproject/data/README.md
+# Downloaded and generated data files (not committed; lives in data/reference/)
+data/reference/*.fastq
+data/reference/*.fasta
+data/reference/*.fa
+data/reference/*.sam
+data/reference/*.bam
+data/reference/*.bai
+data/reference/*.bt2
 
-# Generated alignment files from exercises
-*.fastq
-*.fasta
-*.fa
-*.sam
-*.bam
-*.bai
-*.bt2
+# MEME output directories
+*/meme_output/
