@@ -2,6 +2,7 @@
   "name": "SBML Intern Claude Training",
   "image": "mcr.microsoft.com/devcontainers/miniconda:3",
   "postCreateCommand": "bash .devcontainer/setup.sh",
+  "waitFor": "postCreateCommand",
   "customizations": {
     "vscode": {
       "extensions": [
