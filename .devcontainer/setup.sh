@@ -8,6 +8,6 @@ set -e
 # Install Claude Code CLI
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
-npm install -g @anthropic-ai/claude-code
+sudo npm install -g @anthropic-ai/claude-code
 
 echo "==> Setup complete."
