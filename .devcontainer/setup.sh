@@ -23,7 +23,19 @@ mamba create -n sbml -y python=3.11 ipykernel jupyter notebook
 # Register the kernel right away so VS Code can use it
 conda run -n sbml python -m ipykernel install --user --name sbml --display-name "Python (sbml)"
 
-echo "==> Python (sbml) kernel ready. VS Code can now connect."
+echo "==> Python (sbml) kernel ready."
+
+# Initialize conda for interactive shells, then auto-activate sbml
+conda init bash
+echo "conda activate sbml" >> ~/.bashrc
+
+# Install Claude Code CLI (requires Node.js)
+echo "==> Installing Claude Code CLI..."
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+npm install -g @anthropic-ai/claude-code
+
+echo "==> Phase 1 complete: Python kernel, conda shell, and Claude Code CLI ready."
 
 # Phase 2: Install bioinformatics tools
 echo "==> Phase 2: Installing bioinformatics tools (this takes a while)..."
@@ -40,15 +52,6 @@ mamba install -n sbml -y \
   matplotlib \
   seaborn \
   entrez-direct
-
-# Auto-activate sbml environment in new shells
-echo "conda activate sbml" >> ~/.bashrc
-
-# Install Claude Code CLI (requires Node.js)
-echo "==> Installing Claude Code CLI..."
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
-npm install -g @anthropic-ai/claude-code
 
 echo ""
 echo "==> Environment fully ready. Run 'claude' in the terminal and authenticate with your Pro plan account."
