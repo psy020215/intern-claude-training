@@ -6,19 +6,7 @@ Complete every item below before sharing the Codespace link with a new cohort.
 
 ## 1. SRR Accession — Module 3
 
-**File to edit:** `data/reference/README.md`
-
-Replace both instances of `[SRR_ACCESSION]` with the actual accession number for your cohort's dataset.
-
-Requirements for the chosen accession:
-- Single-end ChIP-exo reads from *E. coli* K-12 MG1655
-- ~500,000 reads (subsample if necessary with `seqtk sample`)
-- Alignment should complete in under 5 minutes on Codespace free tier (2 vCPU, 4 GB RAM)
-
-Recommended: use a single-end ChIP-exo sample from the same Seo et al. 2014 study (GEO: GSE54901) for consistency with Module 4. Subsample with *(run this on the lab server, not inside the Codespace — `seqtk` is not installed in the intern environment)*:
-```bash
-seqtk sample SRR######.fastq 500000 > SRR######_500k.fastq
-```
+No action needed. Interns find the SRR accession themselves in Module 3 Exercise 4 by navigating to GEO series GSE54901 and identifying a single-end ChIP-exo sample for the iron-replete condition. They then run `fastq-dump` themselves as part of the exercise.
 
 ---
 
@@ -52,7 +40,6 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54901
 ```
 
 - Confirm the Fur ChIP-exo peak file for the iron-replete condition is listed under **Supplementary file** and is downloadable
-- Note the exact filename here: `[filename]` — record this in `data/reference/README.md` so interns can verify they got the right file
 - If the file format has changed (NCBI occasionally restructures GEO supplementary files), update the Module 4 Exercise 4 instructions accordingly
 
 ---
@@ -73,7 +60,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE54901
    efetch -version
    claude --version
    ```
-5. Run Module 1 notebook — concept cells should render without errors. **Note:** Exercise 2 (`m1-ex2-code`) is intentionally broken and will raise a `KeyError` when run — this is expected and is the exercise.
+5. Run Module 1 notebook — concept cells should render without errors. **Note:** Exercise 2 (`m1-ex2-code`) is intentionally broken — the countdown prints `0 1 2 3 4` instead of `5 4 3 2 1` (wrong `range()` arguments). No exception is raised; the wrong output is the bug interns must find.
 6. Confirm plan mode works: in the Claude Code terminal, press **Shift+Tab** before sending a prompt
 
 ---
@@ -89,11 +76,10 @@ Interns need a Claude.ai Pro plan account to use plan mode (Shift+Tab).
 
 ## 7. Final Checklist
 
-- [ ] `[SRR_ACCESSION]` replaced in `data/reference/README.md`
 - [ ] `ec_annotation_20100903_DHK_cSRNA_with_ortho.gff` copied to `data/reference/`
-- [ ] GSE54901 supplementary file verified downloadable; filename recorded in `data/reference/README.md`
+- [ ] GSE54901 supplementary file verified downloadable
 - [ ] Codespace test-launched and all tools verified (including `pysam`)
-- [ ] Module 1 concept cells render correctly; Exercise 2 intentionally raises `KeyError`
+- [ ] Module 1 concept cells render correctly; Exercise 2 intentionally prints wrong countdown output (not an exception)
 - [ ] Plan mode tested in Codespace terminal
 - [ ] All interns have Claude Pro plan accounts
 - [ ] `instructor/rubric.md` reviewed and shared with interns (or kept internal — your call)

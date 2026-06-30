@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<!-- ==================================================================
+     LONG DOCUMENT · English · parchment design system
+     AI-Assisted Bioinformatics Training Curriculum — SBML Lab
+     ================================================================== -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI-Assisted Bioinformatics Training Curriculum</title>
+<meta name="author" content="SBML Lab">
+<meta name="description" content="6-week Claude Code curriculum for KAIST GSEB SBML Lab interns, covering ChIP-exo analysis from alignment to motif discovery.">
+<meta name="keywords" content="Claude Code, bioinformatics, ChIP-exo, curriculum, SBML Lab, KAIST">
+<meta name="generator" content="Kami">
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 22mm 22mm 22mm;
+    background: #f5f4ed;
+
+    @top-right {
+      content: string(section-title);
+      font-family: Charter, Georgia, Palatino, serif;
+      font-size: 8pt;
+      color: #6b6a64;
+    }
+
+    @bottom-center {
+      content: counter(page) "  ·  AI-Assisted Bioinformatics Training Curriculum";
+      font-family: Charter, Georgia, Palatino, serif;
+      font-size: 9pt;
+      color: #6b6a64;
+    }
+  }
+  @page:first {
+    @top-right { content: ""; }
+    @bottom-center { content: ""; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --ivory:     #faf9f5;
+    --near-black:#141413;
+    --dark-warm: #3d3d3a;
+    --olive:     #504e49;
+    --stone:     #6b6a64;
+    --brand:     #1B365D;
+    --border:    #e8e6dc;
+    --border-soft:#e5e3d8;
+    --tag-bg:    #E4ECF5;
+
+    --serif: Charter, Georgia, Palatino, "Times New Roman", serif;
+    --sans: var(--serif);
+    --mono: "JetBrains Mono", "SF Mono", "Fira Code", Consolas, Monaco, monospace;
+
+    --rhythm-module:  14pt;
+    --rhythm-section: 18pt;
+  }
+
+  html, body { background: var(--parchment); }
+
+  @media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm 22mm 22mm 22mm; }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 10.5pt;
+    line-height: 1.55;
+    widows: 3;
+    orphans: 3;
+  }
+
+  .sans { font-family: var(--sans); }
+
+  /* COVER */
+  .cover {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40mm 0 0 0;
+    break-after: page;
+  }
+  .cover-eyebrow {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 2pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 18pt;
+  }
+  .cover-title {
+    font-size: 38pt;
+    font-weight: 500;
+    color: var(--near-black);
+    line-height: 1.12;
+    letter-spacing: -0.5pt;
+    margin-bottom: 16pt;
+  }
+  .cover-sub {
+    font-family: var(--sans);
+    font-size: 14pt;
+    color: var(--olive);
+    line-height: 1.45;
+    max-width: 85%;
+    margin-bottom: 30pt;
+  }
+  .cover-meta {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--stone);
+    line-height: 1.7;
+    font-variant-numeric: tabular-nums;
+  }
+  .cover-meta strong { color: var(--dark-warm); font-weight: 500; }
+
+  /* TOC */
+  .toc { break-after: page; }
+  .toc h2 {
+    font-size: 22pt;
+    font-weight: 500;
+    margin-bottom: var(--rhythm-module);
+    border-left: 2.5pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding-left: 8pt;
+  }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 6pt 0;
+    border-bottom: 0.3pt dotted var(--border);
+    font-size: 11pt;
+  }
+  .toc-item:last-of-type { border-bottom: none; }
+  .toc-num {
+    color: var(--brand);
+    font-weight: 500;
+    min-width: 30pt;
+    font-variant-numeric: tabular-nums;
+  }
+  .toc-title {
+    flex: 1;
+    color: var(--near-black);
+    padding-left: 6pt;
+  }
+  .toc-page {
+    color: var(--stone);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* HEADINGS */
+  h1 {
+    font-size: 24pt;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.3pt;
+    margin: 0 0 10pt 0;
+    border-left: 2.5pt solid var(--brand);
+    border-radius: 1.5pt;
+    padding-left: 8pt;
+    color: var(--near-black);
+    break-after: avoid;
+  }
+  h2 {
+    font-size: 16pt;
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 24pt 0 8pt 0;
+    color: var(--near-black);
+    break-after: avoid;
+    string-set: section-title content();
+  }
+  h3 {
+    font-size: 13pt;
+    font-weight: 500;
+    line-height: 1.3;
+    margin: 18pt 0 6pt 0;
+    color: var(--dark-warm);
+    break-after: avoid;
+  }
+
+  .chapter-num {
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6pt;
+  }
+
+  /* PARAGRAPHS */
+  p { margin: 0 0 10pt 0; line-height: 1.55; color: var(--near-black); widows: 2; orphans: 2; }
+
+  .lead {
+    font-size: 12pt;
+    line-height: 1.55;
+    color: var(--dark-warm);
+    margin-bottom: var(--rhythm-module);
+  }
+
+  .hl { color: var(--brand); font-weight: 500; }
+  strong { font-weight: 500; }
+
+  /* LISTS */
+  ul, ol {
+    margin: 6pt 0 10pt 0;
+    padding-left: 20pt;
+    line-height: 1.55;
+  }
+  ul li::marker { color: var(--brand); }
+  ol li::marker { color: var(--brand); font-weight: 500; }
+  li { margin-bottom: 5pt; }
+
+  /* QUOTE */
+  blockquote, .quote {
+    border-left: 2pt solid var(--brand);
+    margin: 12pt 0;
+    padding: 4pt 0 4pt 16pt;
+    color: var(--olive);
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+  blockquote .cite, .quote .cite {
+    display: block;
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 4pt;
+  }
+
+  /* CODE */
+  code {
+    font-family: var(--mono);
+    font-size: 9pt;
+    background: var(--ivory);
+    padding: 1pt 4pt;
+    border-radius: 2pt;
+    color: var(--dark-warm);
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 9pt;
+    line-height: 1.5;
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 10pt 0;
+    white-space: pre-wrap;
+    color: var(--near-black);
+    break-inside: avoid;
+  }
+  pre code { background: transparent; padding: 0; font-size: inherit; }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin: 12pt 0;
+    break-inside: avoid;
+  }
+  table th {
+    text-align: left;
+    font-family: var(--sans);
+    font-weight: 500;
+    color: var(--dark-warm);
+    padding: 6pt 8pt;
+    border-bottom: 1pt solid var(--border);
+    background: var(--ivory);
+  }
+  table td {
+    padding: 5pt 8pt;
+    border-bottom: 0.3pt solid var(--border-soft);
+    vertical-align: top;
+  }
+  table.compact th { padding: 3pt 6pt; font-size: 8pt; }
+  table.compact td { padding: 2pt 6pt; font-size: 8pt; line-height: 1.4; }
+  table.striped tbody tr:nth-child(even) td { background: var(--ivory); }
+
+  /* CALLOUT / TAKEAWAY */
+  .callout {
+    background: var(--ivory);
+    border-left: 2pt solid var(--brand);
+    padding: 10pt 14pt;
+    border-radius: 3pt;
+    margin: 12pt 0;
+    line-height: 1.55;
+    break-inside: avoid;
+  }
+  .takeaway {
+    background: var(--ivory);
+    border-radius: 4pt;
+    padding: 10pt 14pt;
+    margin: 14pt 0;
+    break-inside: avoid;
+  }
+  .takeaway-label {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--brand);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 4pt;
+  }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--brand);
+    font-family: var(--sans);
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 1pt 6pt;
+    border-radius: 3pt;
+    letter-spacing: 0.4pt;
+    text-transform: uppercase;
+    margin-right: 4pt;
+    margin-bottom: 6pt;
+  }
+
+  /* FIGURE */
+  figure { margin: 14pt 0; break-inside: avoid; }
+  figure img { max-width: 100%; border-radius: 4pt; }
+  figcaption {
+    font-family: var(--sans);
+    font-size: 9pt;
+    color: var(--stone);
+    margin-top: 6pt;
+    text-align: center;
+  }
+
+  /* CHAPTER BREAK */
+  .chapter { break-before: page; }
+
+  /* MODULE WEEK HEADER */
+  .module-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8pt;
+    margin-bottom: 8pt;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover">
+  <div>
+    <div class="cover-eyebrow">KAIST GSEB · SBML Lab · Intern Onboarding</div>
+    <div class="cover-title">AI-Assisted<br>Bioinformatics<br>Training</div>
+    <div class="cover-sub">6-Week Claude Code Curriculum for New Lab Members</div>
+  </div>
+  <div class="cover-meta">
+    <strong>SBML Lab</strong><br>
+    Prepared for Prof. Donghyuk Kim<br>
+    v1.0 · 2026.05 · KAIST GSEB
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="toc">
+  <h2>Contents</h2>
+  <div class="toc-item"><span class="toc-num">01</span><span class="toc-title">Overview</span><span class="toc-page">03</span></div>
+  <div class="toc-item"><span class="toc-num">02</span><span class="toc-title">Module Descriptions</span><span class="toc-page">04</span></div>
+  <div class="toc-item"><span class="toc-num">03</span><span class="toc-title">Mini-Project</span><span class="toc-page">07</span></div>
+  <div class="toc-item"><span class="toc-num">04</span><span class="toc-title">Technical Environment</span><span class="toc-page">09</span></div>
+</section>
+
+<!-- Chapter 01 — Overview -->
+<section class="chapter">
+  <div class="chapter-num">01 · Overview</div>
+  <h1>Overview</h1>
+
+  <p class="lead">
+    A 6-week curriculum teaching new SBML Lab interns to use <span class="hl">Claude Code</span> within
+    real bioinformatics workflows — from GFF parsing and read alignment through motif discovery —
+    delivered entirely on GitHub Codespaces with no local installation required.
+  </p>
+
+  <h2>Schedule</h2>
+  <table class="striped">
+    <thead>
+      <tr><th>Week</th><th>Module</th><th>Topic</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Module 1</td><td>Introduction to Claude Code</td></tr>
+      <tr><td>2</td><td>Module 2</td><td>File Parsing and Data Processing</td></tr>
+      <tr><td>3</td><td>Module 3</td><td>NGS Alignment Pipeline</td></tr>
+      <tr><td>4</td><td>Module 4</td><td>Literature Integration, Biopython, and Motif Analysis</td></tr>
+      <tr><td>5–6</td><td>Module 5</td><td>Independent Mini-Project</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Lab-Provided Skills</h2>
+  <table>
+    <thead><tr><th>Skill</th><th>When to use</th></tr></thead>
+    <tbody>
+      <tr><td><code>/log</code></td><td>End of every session — records progress and learnings across all six weeks.</td></tr>
+      <tr><td><code>/debug</code></td><td>When any command or script fails — structured reproduce → fix → verify protocol. Required before asking for help.</td></tr>
+      <tr><td><code>/explain</code></td><td>Before external search — explains tools, algorithms, and concepts in lab context.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    All code cells start empty. No answers are provided in advance — interns use Claude Code to figure out what to run and navigate public databases themselves.
+  </div>
+</section>
+
+<!-- Chapter 02 — Module Descriptions -->
+<section class="chapter">
+  <div class="chapter-num">02 · Module Descriptions</div>
+  <h1>Module Descriptions</h1>
+
+  <!-- Module 1 -->
+  <h2><span class="tag">Week 1</span> Module 1 — Introduction to Claude Code</h2>
+  <div class="callout">
+    <strong>Objectives:</strong> Understand Claude Code's operational model (terminal, files, commands — not a chatbot); write effective prompts; develop the habit of verifying Claude's output critically; use the three lab skills; make a first commit.
+  </div>
+  <ol>
+    <li><strong>Write a script from natural language.</strong> Describe a star-triangle pattern; ask Claude Code to produce and refine the script.</li>
+    <li><strong>Debug a broken script.</strong> Use <code>/debug</code> on a countdown script with an intentional <code>range()</code> bug — no exception, wrong output.</li>
+    <li><strong>Read and invoke the three skills.</strong> Read each skill file, invoke it, and answer when and why to use it.</li>
+    <li><strong>Extend a skill.</strong> Add one detail from <code>lab-context.md</code> to <code>/explain</code> — skills are plain Markdown files.</li>
+  </ol>
+  <p>Deliverable: a <code>/log</code> session entry.</p>
+
+  <!-- Module 2 -->
+  <h2><span class="tag">Week 2</span> Module 2 — File Parsing and Data Processing</h2>
+  <div class="callout">
+    <strong>Objectives:</strong> Generate and refine GFF parsing scripts from natural language; diagnose pandas loading and indexing errors.
+  </div>
+  <p>All exercises use the lab's <em>E. coli</em> K-12 MG1655 annotation GFF (<code>ec_annotation_20100903_DHK_cSRNA_with_ortho.gff</code>) — the same file used in Modules 4 and 5.</p>
+  <ol>
+    <li><strong>Natural language → GFF parsing script.</strong> Describe a filtering task; at least two refinement prompts required.</li>
+    <li><strong>Debug a pandas script.</strong> Two bugs: missing <code>header=None</code> and string column access instead of integer index. Use <code>/debug</code> to reproduce and fix both.</li>
+    <li><strong>When to use <code>iterrows()</code>.</strong> Write a one-sentence rule first, then verify with Claude Code.</li>
+  </ol>
+
+  <!-- Module 3 -->
+  <h2><span class="tag">Week 3</span> Module 3 — NGS Alignment Pipeline</h2>
+  <div class="callout">
+    <strong>Objectives:</strong> Understand bowtie2 and samtools at a conceptual level; use plan mode to generate and review a full pipeline; write <code>makegff.py</code> using pysam.
+  </div>
+  <p>Covers the complete single-end ChIP-exo workflow: reference indexing → bowtie2 alignment → samtools sort/index → GFF conversion for MetaScope. All concepts are explained through Claude Code prompts, not pre-written text.</p>
+  <ol>
+    <li><strong>Understand bowtie2.</strong> Ask Claude Code how it finds alignments; write a 3-sentence summary before running anything.</li>
+    <li><strong>Sort-before-index reasoning.</strong> Write the explanation yourself first, then verify.</li>
+    <li><strong>Plan mode pipeline.</strong> Generate the full pipeline with Shift+Tab; review every step and identify at least one change before approving.</li>
+    <li><strong>Download ChIP-exo reads.</strong> Navigate GEO series GSE54901, find the SRR accession, and download — no commands given.</li>
+    <li><strong>Decode a SAM FLAG.</strong> Choose any FLAG value; decode its bitwise components with Claude Code.</li>
+    <li><strong>Write <code>makegff.py</code>.</strong> Use pysam to output one GFF line per aligned read:
+      <pre><code>NC_000913.3  makegff  read  &lt;start&gt;  &lt;end&gt;  1  &lt;strand&gt;  .  name=&lt;read_name&gt;</code></pre>
+    </li>
+  </ol>
+
+  <!-- Module 4 -->
+  <h2><span class="tag">Week 4</span> Module 4 — Literature, Biopython, and Motif Analysis</h2>
+  <div class="callout">
+    <strong>Objectives:</strong> Extract structured information from a published paper; retrieve GEO data; write a Biopython sequence extraction script; run MEME; interpret motif results biologically.
+  </div>
+  <p>Built around Seo et al. 2014 (GSE54901) — FUR ChIP-exo in <em>E. coli</em>. The expected Fur box motif is known from literature, making it a verifiable training target.</p>
+  <ol>
+    <li><strong>Read Seo et al. 2014.</strong> Write a 3-sentence summary (experiment, condition, finding) before the concept cell states anything.</li>
+    <li><strong>Cross-check the FUR regulon.</strong> Identify other published reference gene sets and how they were determined.</li>
+    <li><strong>Understand MEME.</strong> Write how it works and what E-value means; verify with Claude Code.</li>
+    <li><strong>Download data from GEO.</strong> Provide the series URL; ask Claude Code to retrieve the peak GFF and reference FASTA.</li>
+    <li><strong>Biopython sequence extraction.</strong> Extract ±50 bp windows around each peak summit; write to multi-FASTA for MEME input.</li>
+    <li><strong>Run MEME and interpret.</strong> Build the command with Claude Code; assess whether the top motif is biologically meaningful.</li>
+    <li><strong>TSS distance analysis.</strong> Compute distance from each FUR site to the nearest annotated TSS using the lab GFF.</li>
+  </ol>
+</section>
+
+<!-- Chapter 03 — Mini-Project & Assessment -->
+<section class="chapter">
+  <div class="chapter-num">03 · Mini-Project</div>
+  <h1>Mini-Project</h1>
+
+  <p class="lead">Weeks 5–6: an original analysis on the same FUR ChIP-exo data from Module 4. No new dataset. Interns choose their own biological question, build the pipeline, and write a reproducible report.</p>
+
+  <h2>Six-Day Milestones</h2>
+  <table class="striped">
+    <thead><tr><th>Day</th><th>Milestone</th></tr></thead>
+    <tbody>
+      <tr><td>Day 1</td><td>Literature review complete; biological question drafted</td></tr>
+      <tr><td>Day 2</td><td>Question approved at instructor check-in</td></tr>
+      <tr><td>Day 3</td><td>Analysis plan written; plan-mode pipeline generated and annotated</td></tr>
+      <tr><td>Day 4</td><td>Pipeline running; at least one result figure produced</td></tr>
+      <tr><td>Day 5</td><td>Analysis complete; all figures finalized</td></tr>
+      <tr><td>Day 6</td><td>Report written; notebook submitted</td></tr>
+    </tbody>
+  </table>
+
+  <p>The biological question must be specific and answerable from the data (e.g., "Are FUR binding sites enriched near sRNA genes?"). Vague questions are not accepted. All errors go through <code>/debug</code>; all sessions through <code>/log</code>. The report covers question, methods, results, and interpretation in Markdown cells.</p>
+
+  <h2>Design Principles</h2>
+  <ol>
+    <li><strong>Interns discover answers through Claude Code, not pre-filled cells.</strong> All code cells start empty — including data retrieval commands.</li>
+    <li><strong>Every module uses real lab data and real tools.</strong> The same annotation GFF, SRA reads, and GEO datasets that appear in actual lab research.</li>
+    <li><strong>Claude Code is a tool to understand, not a shortcut to avoid understanding.</strong> Every module has a conceptual check written before consulting Claude Code; plan mode is required for all pipelines.</li>
+    <li><strong>Critical verification is a habit, not a step.</strong> Claude can be wrong. Interns are expected to notice when a result or claim doesn't feel right and investigate.</li>
+  </ol>
+</section>
+
+<!-- Chapter 04 — Technical Environment -->
+<section class="chapter">
+  <div class="chapter-num">04 · Technical Environment</div>
+  <h1>Technical Environment</h1>
+
+  <p class="lead">GitHub Codespaces · conda env <code>sbml</code> · Python 3.11 · no local setup required.</p>
+
+  <table class="striped">
+    <thead><tr><th>Tool</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>bowtie2</td><td>Short-read alignment</td></tr>
+      <tr><td>samtools</td><td>BAM processing and coordinate sorting</td></tr>
+      <tr><td>bedtools</td><td>Genomic interval operations</td></tr>
+      <tr><td>sra-tools</td><td>SRA / GEO data download</td></tr>
+      <tr><td>MEME Suite</td><td>Motif discovery</td></tr>
+      <tr><td>Biopython</td><td>FASTA parsing and sequence manipulation</td></tr>
+      <tr><td>pysam</td><td>BAM file parsing from Python</td></tr>
+      <tr><td>pandas · matplotlib · scipy</td><td>Data processing and visualization</td></tr>
+      <tr><td>entrez-direct</td><td>NCBI data retrieval via command line</td></tr>
+      <tr><td>Claude Code CLI</td><td>AI coding assistant (requires Claude Pro account)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Pre-Distribution Checklist</h2>
+  <ol>
+    <li>Copy <code>ec_annotation_20100903_DHK_cSRNA_with_ortho.gff</code> into <code>data/reference/</code>.</li>
+    <li>Verify GSE54901 peak file is downloadable from GEO.</li>
+    <li>Test-launch a Codespace; confirm all tools including pysam.</li>
+    <li>Confirm interns have Claude Pro accounts before Week 3 (plan mode requires Pro).</li>
+  </ol>
+</section>
+
+</body>
+</html>
