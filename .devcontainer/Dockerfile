@@ -1,15 +1,23 @@
-# Stage 1: Official MEME Suite image — get pre-compiled binaries
-FROM memesuite/memesuite:5.5.9 AS meme-stage
-
-# Stage 2: Main devcontainer
 FROM mcr.microsoft.com/devcontainers/miniconda:3
 
-# Copy entire MEME Suite install tree from official image (/opt/meme/bin, /opt/meme/share, /opt/meme/libexec)
-COPY --from=meme-stage /opt/meme /opt/meme
-
-# Install Perl + libs needed for meme-chip Perl scripts at runtime
-RUN apt-get update && apt-get install -y perl libexpat1 zlib1g && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+# Build MEME Suite 5.5.9 from source — avoids cross-image shared library conflicts
+# MPI is intentionally excluded (training use; single-node is sufficient)
+RUN apt-get update && apt-get install -y \
+      build-essential wget \
+      libxml2-dev libxslt1-dev \
+      zlib1g-dev libexpat1-dev \
+      perl cpanminus \
+      libhtml-template-perl libxml-simple-perl libfile-which-perl \
+    && wget -q "https://meme-suite.org/meme/meme-software/5.5.9/meme-5.5.9.tar.gz" -O /tmp/meme.tar.gz \
+    && tar -xzf /tmp/meme.tar.gz -C /tmp \
+    && cd /tmp/meme-5.5.9 \
+    && ./configure --prefix=/opt/meme --enable-opt --with-url=https://meme-suite.org 2>&1 \
+    && make -j"$(nproc)" 2>&1 \
+    && make install 2>&1 \
+    && cd / && rm -rf /tmp/meme-5.5.9 /tmp/meme.tar.gz \
+    && apt-get remove -y build-essential \
+    && apt-get autoremove -y \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Configure conda channels (bioconda last added = highest priority)
 RUN conda config --add channels defaults && \
@@ -17,7 +25,7 @@ RUN conda config --add channels defaults && \
     conda config --add channels bioconda && \
     conda config --set channel_priority flexible
 
-# Create sbml env — python=3.11, all tools EXCEPT meme (no Perl conflict now)
+# Create sbml env — python=3.11, all tools EXCEPT meme (compiled above)
 RUN conda install -n base -c conda-forge mamba -y && \
     mamba create -n sbml -y python=3.11 \
       ipykernel jupyter notebook \
@@ -25,7 +33,7 @@ RUN conda install -n base -c conda-forge mamba -y && \
       biopython pysam scipy pandas matplotlib seaborn entrez-direct && \
     conda clean -afy
 
-# Make sbml env active by default — no conda activate needed
+# Make meme + sbml env active by default — no activation needed
 ENV PATH="/opt/meme/bin:/opt/conda/envs/sbml/bin:/opt/conda/bin:${PATH}"
 
 # Install Node.js 20 and Claude Code CLI
