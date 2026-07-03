@@ -4,16 +4,8 @@ FROM memesuite/memesuite:5.5.9 AS meme-stage
 # Stage 2: Main devcontainer
 FROM mcr.microsoft.com/devcontainers/miniconda:3
 
-# Copy MEME Suite binaries from official image (bypasses bioconda Perl version conflicts entirely)
-COPY --from=meme-stage /usr/local/bin/meme /usr/local/bin/meme
-COPY --from=meme-stage /usr/local/bin/fimo /usr/local/bin/fimo
-COPY --from=meme-stage /usr/local/bin/ame /usr/local/bin/ame
-COPY --from=meme-stage /usr/local/bin/sea /usr/local/bin/sea
-COPY --from=meme-stage /usr/local/bin/meme-chip /usr/local/bin/meme-chip
-# Copy MEME data files (path varies by version: meme-5.5.9 or meme)
-COPY --from=meme-stage /usr/local/share/ /tmp/meme-share-src/
-RUN find /tmp/meme-share-src -maxdepth 1 -name 'meme*' -exec cp -r {} /usr/local/share/ \; && \
-    rm -rf /tmp/meme-share-src
+# Copy entire MEME Suite install tree from official image (/opt/meme/bin, /opt/meme/share, /opt/meme/libexec)
+COPY --from=meme-stage /opt/meme /opt/meme
 
 # Install Perl + libs needed for meme-chip Perl scripts at runtime
 RUN apt-get update && apt-get install -y perl libexpat1 zlib1g && \
@@ -34,7 +26,7 @@ RUN conda install -n base -c conda-forge mamba -y && \
     conda clean -afy
 
 # Make sbml env active by default — no conda activate needed
-ENV PATH="/opt/conda/envs/sbml/bin:/opt/conda/bin:${PATH}"
+ENV PATH="/opt/meme/bin:/opt/conda/envs/sbml/bin:/opt/conda/bin:${PATH}"
 
 # Install Node.js 20 and Claude Code CLI
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
