@@ -2,7 +2,7 @@
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/sbml-lab/intern-claude-training)
 
-> The Codespace will install all required tools automatically (bowtie2, samtools, MEME, Biopython, Claude Code CLI). First launch takes ~5 minutes.
+> The Codespace will install all required tools automatically (bowtie2, samtools, MEME, Biopython, pandas/openpyxl, Claude Code CLI). First launch takes ~5 minutes.
 >
 > You will need to authenticate Claude Code with a **Pro plan** account after launch: run `claude` in the terminal.
 
@@ -17,7 +17,7 @@ A 6-week training curriculum for SBML Lab (KAIST GSEB) interns. Covers Python, G
 | 1 | What is Claude Code |
 | 2 | GFF parsing + pandas with Claude Code |
 | 3 | NGS alignment pipeline with Claude Code |
-| 4 | Papers, MEME, and Biopython with Claude Code |
+| 4 | The FUR regulon: paper → paired-end RNA-seq alignment → MEME motif with Biopython |
 | 5 (Weeks 5–6) | Independent mini-project |
 
 ## Standing Rules
