@@ -25,16 +25,28 @@ RUN conda config --add channels defaults && \
     conda config --add channels bioconda && \
     conda config --set channel_priority flexible
 
-# Create sbml env — python=3.11, all tools EXCEPT meme (compiled above)
+# Create sbml env — python=3.11, all tools EXCEPT meme (compiled above) and sra-tools (NCBI binary below)
 RUN conda install -n base -c conda-forge mamba -y && \
     mamba create -n sbml -y python=3.11 \
       ipykernel jupyter notebook \
-      bowtie2 samtools bedtools "sra-tools>=3.0" \
+      bowtie2 samtools bedtools \
       biopython pysam scipy pandas openpyxl matplotlib seaborn entrez-direct && \
     conda clean -afy
 
-# Make meme + sbml env active by default — no activation needed
-ENV PATH="/opt/meme/bin:/opt/conda/envs/sbml/bin:/opt/conda/bin:${PATH}"
+# SRA Toolkit from NCBI's official static binary (NOT conda).
+# Conda's sra-tools 3.x is uninstallable here: every 3.x build requires `ossuuid`, which
+# exists only on conda-forge and does not resolve as a transitive bioconda dependency
+# (solver reports "ossuuid does not exist"). The old conda 2.9.6 that would otherwise be
+# selected can't reach NCBI over TLS. The prebuilt static tarball sidesteps both problems
+# and is the same 3.2.1 the lab's original tutorial used.
+RUN curl -fsSL "https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.2.1/sratoolkit.3.2.1-ubuntu64.tar.gz" \
+      -o /tmp/sratoolkit.tar.gz && \
+    tar -xzf /tmp/sratoolkit.tar.gz -C /opt && \
+    mv /opt/sratoolkit.3.2.1-ubuntu64 /opt/sratoolkit && \
+    rm /tmp/sratoolkit.tar.gz
+
+# Make meme + sbml + SRA Toolkit active by default — no activation needed.
+ENV PATH="/opt/meme/bin:/opt/conda/envs/sbml/bin:/opt/sratoolkit/bin:/opt/conda/bin:${PATH}"
 
 # Install Node.js 20 and Claude Code CLI
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
