@@ -84,9 +84,13 @@ seqname  source  feature  start  end  score  strand  frame  attribute
 
 ## Visualization
 
-- **MetaScope**: the lab's own genome browser (cross-platform, Avalonia)
-- Input: GFF files produced by `makegff.py`
+- **MetaScope**: the lab's own genome browser (cross-platform, Avalonia; also a Windows/.NET build)
+- Input: GFF files produced by `makegff.py` (and any GFF, e.g. the gene annotation or a binding-site track)
 - Used to visually inspect ChIP-exo peaks, RNA-seq coverage, and multi-dataset overlays
+- **Install**: from the lab homepage (sbml-lab.ai). It is a **desktop application** — it runs on the intern's own computer (Windows or macOS), **not** inside the Codespace.
+- **Workflow**: produce/verify the GFF in the Codespace → download the GFF to the local machine → open it in MetaScope → overlay with the annotation → export a figure (PNG at 300 dpi or SVG).
+- **Key operations**: `Ctrl/Cmd+O` open a GFF (adds a track); `Ctrl/Cmd+G` go to a genomic position; `Ctrl/Cmd+F` search the loaded features by name; `Ctrl+Shift+E` export image; `Ctrl/Cmd+Shift+C` / `+H` set track color / height; hover a feature for its position/strand/name tooltip.
+- **Tracks are grouped by chromosome ID (column 1 of the GFF).** To overlay two tracks they must share the same seqname. The lab annotation uses `NC_000913`; `makegff.py` output uses `NC_000913.3` (the reference-FASTA accession). If tracks land on separate chromosome tabs and won't line up, normalize column 1 so they match.
 
 ---
 

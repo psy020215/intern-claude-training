@@ -10,14 +10,16 @@
 
 A 6-week training curriculum for SBML Lab (KAIST GSEB) interns. Covers Python, GFF/pandas data processing, NGS alignment, motif analysis, and an independent mini-project — all using Claude Code as the primary tool.
 
+Modules 3 and 4 close the loop by visualizing their GFF output in **MetaScope**, the lab's own genome browser. MetaScope is a desktop application (install it from the lab homepage, [sbml-lab.ai](https://sbml-lab.ai)) — the pipelines produce the GFF in the Codespace, and interns download it and open it in MetaScope locally to inspect ChIP-exo binding and RNA-seq signal against the gene annotation.
+
 ## Curriculum
 
 | Module | Topic |
 |--------|-------|
 | 1 | What is Claude Code |
 | 2 | GFF parsing + pandas with Claude Code |
-| 3 | NGS alignment pipeline with Claude Code |
-| 4 | The FUR regulon: paper → paired-end RNA-seq alignment → MEME motif with Biopython |
+| 3 | NGS alignment pipeline with Claude Code + MetaScope visualization of ChIP-exo |
+| 4 | The FUR regulon: paper → paired-end RNA-seq alignment → MEME motif with Biopython → integrative MetaScope view |
 | 5 (Weeks 5–6) | Independent mini-project |
 
 ## Standing Rules
