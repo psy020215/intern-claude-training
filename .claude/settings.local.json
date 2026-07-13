@@ -6,10 +6,16 @@
         "hooks": [
           {
             "type": "command",
-            "command": "jq -r '.tool_response.filePath // .tool_input.file_path' | { read -r f; [ -f \"$f\" ] && git -C \"$(dirname \"$f\")\" add -- \"$f\" && git -C \"$(dirname \"$f\")\" commit -m \"auto: update $(basename \"$f\")\" --quiet; } 2>/dev/null || true"
+            "command": "jq -r '.tool_response.filePath // .tool_input.file_path' | { read -r f; [ -f \"$f\" ] && git -C \"$(dirname \"$f\")\" add -- \"$f\" && git -C \"$(dirname \"$f\")\" commit -m \"auto: update $(basename \"$f\")\" --quiet && git -C \"$(dirname \"$f\")\" push origin HEAD --quiet; } 2>/dev/null || true"
           }
         ]
       }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git commit *)",
+      "Bash(echo \"exit:$?\")"
     ]
   }
 }
