@@ -19,8 +19,3 @@ Summarize what happened in the current session so the user can see not only what
    - Anything still pending or left unresolved
 
 3. Output the 3 sentences straight to the terminal — don't write them to a file — so the user can paste them into a note or send to their supervisor.
-
-## Notes
-
-- Keep it to 3 sentences total — this is a quick recap, not a full log (use `/log` for the detailed version).
-- Be concrete: name actual files, commands, or errors instead of vague statements like "worked on the project."
