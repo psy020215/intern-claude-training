@@ -11,14 +11,14 @@ Summarize what happened in the current session so the user can see not only what
 
 ## Process
 
-1. Look back over the current session: what files were edited, what commands were run, what questions were asked, and what errors came up.
+1. Review the conversation so far in this session — note which files changed, which commands or scripts ran, and what the user asked along the way.
 
-2. Write exactly 3 sentences covering:
-   - **Accomplished**: what was done or finished this session
-   - **Broke / Surprising**: anything that failed, errored, or didn't behave as expected
-   - **Open / Unfinished**: what is still left to do or unresolved
+2. Condense that into exactly 3 sentences, one for each of:
+   - What got done this session
+   - Any error, failure, or unexpected behavior that came up
+   - Anything still pending or left unresolved
 
-3. Print the 3-sentence summary directly to the terminal (not saved to a file) so the intern can copy it into a note or share it with their supervisor.
+3. Output the 3 sentences straight to the terminal — don't write them to a file — so the user can paste them into a note or send to their supervisor.
 
 ## Notes
 
