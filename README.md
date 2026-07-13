@@ -83,4 +83,3 @@ notebooks/              ← all 5 training notebooks (01–05)
 data/reference/         ← shared reference data and downloads
 instructor/             ← rubric and instructor notes
 ```
-
