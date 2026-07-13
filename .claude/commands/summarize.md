@@ -7,7 +7,7 @@ description: Summarizes what happened in the current session (files edited, comm
 
 ## Purpose
 
-Give the intern a quick, shareable recap of the current session without them having to scroll back through the whole conversation.
+Summarize what happened in the current session so the user can see not only what was modified or executed, but also what problems occurred and what remains unresolved.
 
 ## Process
 
