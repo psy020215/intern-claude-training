@@ -11,12 +11,18 @@ build/
 
 # Downloaded and generated data files (not committed; lives in data/reference/)
 data/reference/*.fastq
+data/reference/*.fastq.gz
 data/reference/*.fasta
 data/reference/*.fa
 data/reference/*.sam
 data/reference/*.bam
 data/reference/*.bai
 data/reference/*.bt2
+
+# Pipeline intermediate outputs generated at repo root during exercises
+/*.sam
+/*.bam
+/*.bai
 
 # MEME output directories
 */meme_output/
