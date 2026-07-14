@@ -1,4 +1,14 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(git commit *)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(jupyter nbconvert *)",
+      "Bash(python3 *)",
+      "Bash(git add)",
+      "Bash(git add *)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
@@ -10,12 +20,6 @@
           }
         ]
       }
-    ]
-  },
-  "permissions": {
-    "allow": [
-      "Bash(git commit *)",
-      "Bash(echo \"exit:$?\")"
     ]
   }
 }
