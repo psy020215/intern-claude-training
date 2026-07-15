@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 import sys
 from collections import Counter
 import pysam
@@ -9,14 +10,20 @@ import pysam
 # strand, but the biological 5' end is reference_start for + strand reads and
 # reference_end for - strand reads (exonuclease stops at the crosslink site
 # from the other direction) - so the pileup key must branch on strand rather
-# than reusing reference_start for both. Thresholds were picked from this
-# dataset's count distribution (median=1, p99=4).
-def weight_for_count(count):
-    if count >= 5:
-        return 5
-    if count >= 2:
-        return 3
-    return 1
+# than reusing reference_start for both.
+
+TARGET_MAX_SCORE = 10
+
+# Pileup counts span a huge range (1 to several thousand in this dataset), so
+# a raw count would let a handful of outlier positions dominate the GFF score
+# column. Log-scaling and then normalizing against this run's own max count
+# spreads the common low counts (1-10) across most of the 1..TARGET_MAX_SCORE
+# range instead of bunching them all near 1.
+def compute_score(count, max_count, target_max=TARGET_MAX_SCORE):
+    if max_count <= 1:
+        return 1
+    score = 1 + (target_max - 1) * math.log(count) / math.log(max_count)
+    return round(score)
 
 def pileup_key(read):
     five_prime = read.reference_end if read.is_reverse else read.reference_start
