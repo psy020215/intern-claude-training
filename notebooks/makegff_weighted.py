@@ -41,6 +41,8 @@ def main():
                 continue
             counts[pileup_key(read)] += 1
 
+    max_count = max(counts.values(), default=1)
+
     with pysam.AlignmentFile(bam_path, "rb") as bam, open(gff_path, "w") as gff:
         for read in bam.fetch(until_eof=True):
             if read.is_unmapped:
@@ -52,7 +54,7 @@ def main():
             # this track's chromosome ID matches the lab annotation's in MetaScope.
             chrom = read.reference_name.split(".")[0]
             count = counts[pileup_key(read)]
-            score = weight_for_count(count)
+            score = compute_score(count, max_count)
             gff.write(
                 f"{chrom}\tmakegff\tread\t{start}\t{end}\t{score}\t{strand}\t.\tname={read.query_name}\n"
             )
