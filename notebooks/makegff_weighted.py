@@ -55,6 +55,13 @@ def main():
             chrom = read.reference_name.split(".")[0]
             count = counts[pileup_key(read)]
             score = compute_score(count, max_count)
+            # MetaScope's reference-genome track encodes strand as the sign of
+            # its value (+1/0/-1), and only reads the score column for
+            # coloring - it doesn't use column 7 for that. Mirror the same
+            # sign convention here so - strand reads are visually
+            # distinguishable from + strand ones.
+            if read.is_reverse:
+                score = -score
             gff.write(
                 f"{chrom}\tmakegff\tread\t{start}\t{end}\t{score}\t{strand}\t.\tname={read.query_name}\n"
             )
