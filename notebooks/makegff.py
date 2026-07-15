@@ -14,8 +14,11 @@ def main():
             strand = "-" if read.is_reverse else "+"
             start = read.reference_start + 1  # pysam is 0-based; GFF is 1-based
             end = read.reference_end # already the correct 1-based inclusive end
+            # Strip the FASTA accession version (e.g. NC_000913.3 -> NC_000913) so
+            # this track's chromosome ID matches the lab annotation's in MetaScope.
+            chrom = read.reference_name.split(".")[0]
             gff.write(
-                f"{read.reference_name}\tmakegff\tread\t{start}\t{end}\t1\t{strand}\t.\tname={read.query_name}\n"
+                f"{chrom}\tmakegff\tread\t{start}\t{end}\t1\t{strand}\t.\tname={read.query_name}\n"
             )
 
 if __name__ == "__main__":
