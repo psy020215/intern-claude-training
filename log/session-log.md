@@ -50,3 +50,16 @@
 - MetaScope 이용 방법과 원리를 익힘.
 
 ---
+
+## Session — 2026-07-15
+
+### Done
+- 피크 관측을 위해 makegff.py의 인자 중 하나인 score 부분을 변경하여 read가 여러 번 겹치는 구간에 가중치를 부여함.
+
+### Broke / Struggled
+- 가중치 기준을 몇 번 재조정해야 함 (1/3/5 고정값 → log-scale 정규화 → strand 부호 반영).
+
+### Learned
+- BAM 파일 변형 후 GFF 작성 시 분석 목적에 맞추어 변형하는 것이 중요하다고 생각됨.
+
+---
