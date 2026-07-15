@@ -4,5 +4,7 @@
   "terminal.integrated.defaultProfile.linux": "bash",
   "terminal.integrated.env.linux": {
     "PATH": "/opt/conda/envs/sbml/bin:/opt/conda/bin:${env:PATH}"
-  }
+  },
+  "python-envs.defaultEnvManager": "ms-python.python:conda",
+  "python-envs.defaultPackageManager": "ms-python.python:conda"
 }

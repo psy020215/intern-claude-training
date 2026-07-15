@@ -38,3 +38,15 @@
 - lab에서 사용하는 툴과 그 적용 방법.
 
 ---
+## Session — 2026-07-15
+
+### Done
+- chipexo.gff 생성 및 MetaScope로 확인함.
+
+### Broke / Struggled
+- MetaScope에서 피크 확인과 binding site 특정에 어려움을 겪음.
+
+### Learned
+- MetaScope 이용 방법과 원리를 익힘.
+
+---

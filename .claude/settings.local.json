@@ -6,7 +6,14 @@
       "Bash(jupyter nbconvert *)",
       "Bash(python3 *)",
       "Bash(git add)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git push *)",
+      "Bash(git -C /workspaces/intern-claude-training diff --stat notebooks/03_ngs_pipeline_with_claude.ipynb)",
+      "Bash(timeout 20 /opt/conda/envs/sbml/bin/python notebooks/makegff.py SRR1168121_sorted.bam /tmp/claude-1000/-workspaces-intern-claude-training/52a2caf6-6d87-4429-858f-5506d4a94bd3/scratchpad/out.gff)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(xxd chipexo.gff)",
+      "Bash(gzip -k -f chipexo.gff)"
     ]
   },
   "hooks": {

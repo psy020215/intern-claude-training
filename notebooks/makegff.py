@@ -23,3 +23,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# terminal 에서 수행할 떈 
+# cd /workspaces/intern-claude-training/notebooks
+# python3 makegff.py ../SRR1168121_sorted.bam chipexo.gff
+# 넣고 진행
