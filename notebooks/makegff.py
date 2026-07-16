@@ -35,7 +35,10 @@ def main():
             strand = "-" if read.is_reverse else "+"
             # ChIP-exo signal is the read's 5' end: start if '+', end if '-'.
             pos = read.reference_start + 1 if strand == "+" else read.reference_end
-            key = (read.reference_name, strand)
+            # Strip the FASTA accession version (e.g. NC_000913.3 -> NC_000913) so this
+            # track's chromosome ID matches the lab annotation's in MetaScope.
+            chrom = read.reference_name.split(".")[0]
+            key = (chrom, strand)
             counts.setdefault(key, Counter())[pos] += 1
 
     max_count = max(
