@@ -26,7 +26,7 @@ def main():
         sys.exit(f"Usage: python {sys.argv[0]} <sorted.bam> <output.gff>")
     bam_path, gff_path = sys.argv[1], sys.argv[2]
 
-    # counts[(chrom, strand)][position] = 해당 위치에 5' end가 몰린 read 개수
+    # counts[chrom][(pos, strand)] = 해당 (위치, strand)에 5' end가 몰린 read 개수
     counts = {}
 
     with pysam.AlignmentFile(bam_path, "rb") as bam:
@@ -38,16 +38,19 @@ def main():
             pos = read.reference_start + 1 if strand == "+" else read.reference_end
             # FASTA accession 버전(.3)을 떼어 lab annotation의 chromosome ID(NC_000913)와 맞춤
             chrom = read.reference_name.split(".")[0]
-            key = (chrom, strand)
-            counts.setdefault(key, Counter())[pos] += 1
+            counts.setdefault(chrom, Counter())[(pos, strand)] += 1
 
     max_count = max(
         (c for positions in counts.values() for c in positions.values()), default=1
     )
 
     with open(gff_path, "w") as gff:
-        for (chrom, strand), positions in sorted(counts.items()):
-            for pos, count in sorted(positions.items()):
+        # (pos, strand) 순으로 정렬 -> 파일 전체가 좌표 기준으로 단조 증가하는
+        # coordinate-sorted GFF가 된다 (strand별로 통째로 묶어서 쓰면 좌표가
+        # 중간에 처음으로 되돌아가서, 좌표 정렬을 기대하는 뷰어에서 뒤쪽 strand의
+        # 뒷부분 데이터가 로드되지 않는 문제가 있었다).
+        for chrom, positions in sorted(counts.items()):
+            for (pos, strand), count in sorted(positions.items()):
                 score = compute_score(count, max_count)
                 # 부호로 strand를 한 번 더 표시(컬럼7의 +/-와 중복되지만, MetaScope에서
                 # 두 strand 트랙을 score 축 위아래로 갈라 보기 위해 유지한다).
