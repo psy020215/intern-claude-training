@@ -63,3 +63,17 @@
 - BAM 파일 변형 후 GFF 작성 시 분석 목적에 맞추어 변형하는 것이 중요하다고 생각됨.
 
 ---
+
+## Session — 2026-07-16
+
+### Done
+- binding site를 찾기 위해 겹치는 read(5' end pileup) 부분에 score를 다르게 부여하도록 makegff.py를 수정함.
+
+### Broke / Struggled
+- score 정규화 기준을 여러 번 바꿔야 했음.
+- MetaScope 로딩 및 시각화 과정에서 이슈가 있었음.
+
+### Learned
+- GFF 파일에 저장되는 feature 컬럼 값을 수정하니 MetaScope에서 의도한 대로 시각화가 가능해짐을 확인함.
+
+---
