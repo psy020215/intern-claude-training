@@ -13,7 +13,10 @@
       "Bash(echo \"EXIT:$?\")",
       "Bash(echo \"EXIT: $?\")",
       "Bash(xxd chipexo.gff)",
-      "Bash(gzip -k -f chipexo.gff)"
+      "Bash(gzip -k -f chipexo.gff)",
+      "Bash(conda env *)",
+      "Bash(find / -iname \"fastq-dump*\" -o -iname \"fasterq-dump*\" -o -iname \"prefetch*\")",
+      "Bash(rm *)"
     ]
   },
   "hooks": {
