@@ -27,8 +27,8 @@ def main():
     with pysam.AlignmentFile(bam_path, "rb") as bam:#bam 파일 열고 모든 read 순회
         for read in bam.fetch(until_eof=True):
             if read.is_unmapped:
-                continue
-            strand = "-" if read.is_reverse else "+"
+                continue 
+            strand = "-"if read.is_reverse else "+"
             # ChIP-exo 시그널은 read의 5' end: +가닥은 start, -가닥은 end를 기준으로
             pos = read.reference_start + 1 if strand == "+" else read.reference_end
             # FASTA accession 버전(.3)을 떼어 lab annotation의 chromosome ID(NC_000913)와 맞춤
