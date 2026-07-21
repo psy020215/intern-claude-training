@@ -18,6 +18,8 @@ data/reference/*.sam
 data/reference/*.bam
 data/reference/*.bai
 data/reference/*.bt2
+data/reference/*.gff
+notebooks/*.gff
 
 # Pipeline intermediate outputs generated at repo root during exercises
 /*.sam
