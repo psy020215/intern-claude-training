@@ -8,6 +8,7 @@
 # Output seqname is hardcoded NC_000913 (matches the lab annotation).
 # Source: github.com/SKo-sierrayk/sbml_kimslab_tutorials (one-line py3 filename-decode fix).
 # Usage:  python makegff.py [--separate_strand] [--flip] [--log_scale] <sorted.bam> <out.gff>
+# read를 read1 &2로 나누어 정렬 시 paired-end read인지를 구분
 
 from os.path import split
 
@@ -29,7 +30,7 @@ def count_coverage(samfile, chromosome_size=6000000, flip=False):
     chromsome_size: This value should be larger than the largest chromosome"""
     all_counts = {}
     plus_strands = []
-    minus_strands = []
+    minus_strands = []#plus / minus strand를 구분해서 카운트 저장
     if "SQ" in samfile.header:
         chromosome_sizes = {}
         for entry in samfile.header["SQ"]:
@@ -42,7 +43,7 @@ def count_coverage(samfile, chromosome_size=6000000, flip=False):
         minus_strands.append(zeros((chromosome_sizes[reference],)))
     # iterate through each mapped read
     for i, read in enumerate(samfile):
-        if read.is_unmapped:
+        if read.is_unmapped:#정렬되지 않은 read는 계산에서 제외
             continue
         if not read.is_proper_pair:
             if read.is_reverse:
