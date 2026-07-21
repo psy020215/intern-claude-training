@@ -90,3 +90,16 @@
 - 다른 언어와 달리 python의 경우 삼항 표현식을 단일 문장으로 처리할 수 있다는 점.
 
 ---
+
+## Session — 2026-07-21
+
+### Done
+- single-end로 read를 매핑하고 분석했던 Module 3와 달리, paired-end로 되어있는 read를 처리하는 방법에 대해 공부함.
+
+### Broke / Struggled
+- SAM 파일이 너무 커서 작업 진행이 너무 오래 걸림 — 이를 보완할 방법을 찾아봐야 할 듯.
+
+### Learned
+- fragment의 길이에 제한을 두는 이유(-X)와 FUR regulator의 역할에 대해 알게 됨.
+
+---
