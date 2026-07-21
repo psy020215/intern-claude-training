@@ -1,3 +1,10 @@
+#이거는 start, end point만을 기점으로 카운트함. 원래는 read
+"""처음엔 strand의 end point 만을 기준으로 겹치는 지점만을 count해서 피크로 구현했고,
+그러다보니 strand 방향에 따라 전사 시작 부분이 달라진다고 생각.
+-> 이렇게 할 경우, FUR결합부위로부터 조금 떨어진 곳에서 peak가 만들어짐
+-> point를 기준으로 하고싶으면, Strand에서 위치별 endpoint를 따로 카운트하고 피크 사이에 결합위치가 존재한다고 판단
+근데 그렇게 접근하는 것보다 strand position별로 쌓인 read를 +/-별로 count하여 통합시켜서 접근하는게 올바름"""
+
 #!/usr/bin/env python3
 import math
 import sys
