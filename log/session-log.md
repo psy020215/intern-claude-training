@@ -103,3 +103,20 @@
 - fragment의 길이에 제한을 두는 이유(-X)와 FUR regulator의 역할에 대해 알게 됨.
 
 ---
+
+## Session — 2026-07-22
+
+### Done
+- Exercise 4의 MEME 예측 답변을 검토하고 구체적 수치로 재작성함.
+- Exercise 5~8 파이프라인(binding site 테이블 다운로드, Biopython 서열 추출, MEME 실행, 결과 해석, TSS 거리 분석, fur_sites.gff 생성)을 진행함.
+
+### Broke / Struggled
+- 노트북 셀에서 meme 명령어가 sbml conda 환경 PATH에 없어서 CalledProcessError(exit 127) 발생 — /opt/meme/bin/meme로 전체 경로 지정해서 해결함.
+- Exercise 2에서 만든 rnaseq.gff가 makegff.py의 --flip 옵션 없이 생성되어 RNA-seq strand가 실제와 반대로 기록되어 있던 것을 발견하고 재생성함.
+- Transcription Unit 컬럼이 오페론 이름 전체(예: fes-ybdZ-entF-fepE)로 저장되어 있어 =='fes'로 검색하면 안 나오는 실수를 함.
+
+### Learned
+- MEME은 모티프를 마스킹 후 반복 탐색으로 찾기 때문에 발견 순서(1,2,3등)가 E-value 크기 순서와 항상 일치하지는 않음.
+- 통계적으로 유의한 공통 모티프가 나왔다고 해서 그것이 곧 진짜 TF 결합 서열이라는 보장은 없고, 알려진 구조와의 대조 검증이 필요함.
+
+---
