@@ -124,3 +124,19 @@
 - paired-end fragment에서 concordant/discordant를 구분하는 기준과 그에 따른 접근·판단 방법을 이해함.
 
 ---
+
+## Session — 2026-07-23
+
+### Done
+- Module 4 마무리: FUR binding site, RNA-seq 발현량, gene annotation 세 트랙을 비교해서 FUR 결합에 따른 유전인자(fepA)의 발현량 차이를 확인함.
+- iron-replete(SRR1168133)와 iron-depleted(SRR1168135) 조건의 RNA-seq을 각각 정렬하여 fepA 발현량을 정량 비교함(raw depth 기준 약 16~18배 차이).
+
+### Broke / Struggled
+- rnaseq.gff의 score를 그대로(raw) 써서 만드니, 일부 위치(prophage 영역)의 극단적으로 높은 coverage 때문에 MetaScope의 y축 스케일이 깨져 대부분의 유전자 발현량 바가 보이지 않았음 → log scale로 재생성해서 해결함.
+- log scale로 변환한 score의 평균으로 두 조건 간 fold-change를 비교하는 것은 산술평균이 아닌 기하평균 기반이라 엄밀하지 않음을 확인하고, BAM에서 raw depth를 직접 추출해 library size로 정규화하여 재계산함.
+
+### Learned
+- responsive repressor(FUR)의 작동 방식과, 특정 대사 관련 인자가 아니더라도 간접적으로 억제 대상 인자가 다른 대사에 영향을 줄 수 있음을 알게 됨.
+- metabolic pathway network와 TRN(transcriptional regulatory network)의 연결이 대사산물·과정 예측에 필수적임을 확인함.
+
+---
