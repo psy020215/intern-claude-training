@@ -389,7 +389,7 @@
 </background_frequencies>
 </model>
 <motifs>
-<motif id="motif_1" name="GCWGVMRRTYRCYGH" alt="MEME-1" width="15" sites="40" ic="14.7" re="14.7" llr="407" p_value="9.7e-141" e_value="1.9e-015" bayes_threshold="9.75315" elapsed_time="9.562002">
+<motif id="motif_1" name="GCWGVMRRTYRCYGH" alt="MEME-1" width="15" sites="40" ic="14.7" re="14.7" llr="407" p_value="9.7e-141" e_value="1.9e-015" bayes_threshold="9.75315" elapsed_time="8.629444">
 <scores>
 <alphabet_matrix>
 <alphabet_array>
@@ -1424,7 +1424,7 @@ GC[AT]G[CGA][CA][AG][AG]T[CT][GA]C[CT][GA][ATC]
 </contributing_site>
 </contributing_sites>
 </motif>
-<motif id="motif_2" name="GGYBTTGATGVYKTYNCGMWYSTGG" alt="MEME-2" width="25" sites="16" ic="22.9" re="22.9" llr="254" p_value="5.5e-064" e_value="3.4e-008" bayes_threshold="9.42456" elapsed_time="18.291185">
+<motif id="motif_2" name="GGYBTTGATGVYKTYNCGMWYSTGG" alt="MEME-2" width="25" sites="16" ic="22.9" re="22.9" llr="254" p_value="5.5e-064" e_value="3.4e-008" bayes_threshold="9.42456" elapsed_time="15.985563">
 <scores>
 <alphabet_matrix>
 <alphabet_array>
@@ -2235,7 +2235,7 @@ G[GA][TC][GTC]TTGATG[CGA][CT][GT]T[CT][ACT]CG[CA][TA][TC][CG][TC]GG
 </contributing_site>
 </contributing_sites>
 </motif>
-<motif id="motif_3" name="WKAAAMYSATGDATBTGAHCRGCAW" alt="MEME-3" width="25" sites="15" ic="24.4" re="24.4" llr="254" p_value="1.2e-064" e_value="5.9e-012" bayes_threshold="10.1928" elapsed_time="26.164270">
+<motif id="motif_3" name="WKAAAMYSATGDATBTGAHCRGCAW" alt="MEME-3" width="25" sites="15" ic="24.4" re="24.4" llr="254" p_value="1.2e-064" e_value="5.9e-012" bayes_threshold="10.1928" elapsed_time="23.396503">
 <scores>
 <alphabet_matrix>
 <alphabet_array>
