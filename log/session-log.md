@@ -140,3 +140,20 @@
 - metabolic pathway network와 TRN(transcriptional regulatory network)의 연결이 대사산물·과정 예측에 필수적임을 확인함.
 
 ---
+
+## Session — 2026-07-24
+
+### Done
+- 논문의 Fur 조절 기작(holo-Fur repression, holo-Fur activation, apo-Fur activation) 설명을 정리함.
+- ftnB 유전자 발현량을 BAM 파일(SRR1168133/SRR1168135)에서 samtools depth로 직접 수치화하여 iron-replete/depleted 조건을 비교함.
+
+### Broke / Struggled
+- 유전자 구간을 전체/Fur site 이후/중간점 이후 중 어디로 자르느냐에 따라 repleted-depleted 우열 방향이 뒤바뀜.
+- strand가 서로 다른 두 트랙(예: SRR1168135_(-) vs SRR1168133_(+))을 비교해서 잘못된 결론을 낼 뻔함.
+
+### Learned
+- makegff.py의 --flip은 원본 BAM strand와 반대로 뒤집는 것이라, 조건 간 비교는 반드시 같은 strand 라벨끼리 해야 함.
+- 논문 Supplementary Data의 Mode(HA/HR/AA)·Distance to TSS 컬럼이 실제 결합 위치·조절 기전 판단의 핵심 근거임.
+- 낮은 depth·단일 replicate 데이터에서는 구간을 어떻게 자르느냐에 따라 결론이 쉽게 뒤바뀔 수 있어 신중한 해석이 필요함.
+
+---
