@@ -1,0 +1,8 @@
+Query_ID	Target_ID	Optimal_offset	p-value	E-value	q-value	Overlap	Query_consensus	Target_consensus	Orientation
+FurBox_literature	WKAAAMYSATGDATBTGAHCRGCAW	2	0.0383235	0.11497	0.218882	19	GATAATGATAATCATTATC	TTGCTGATCAAATCCATCGTTTTAA	-
+FurBox_literature	GGYBTTGATGVYKTYNCGMWYSTGG	6	0.418013	1.25404	0.655512	19	GATAATGATAATCATTATC	CCAGAAGCGTGACAGCATCAACACC	-
+FurBox_literature	GCWGVMRRTYRCYGH	-4	0.827773	2.48332	0.92039	15	GATAATGATAATCATTATC	TCGGCAATTGGCTGC	-
+
+# Tomtom (Motif Comparison Tool): Version 5.5.9 compiled on Jul 13 2026 at 06:07:04
+# The format of this file is described at https://meme-suite.org/doc/tomtom-output-format.html.
+# tomtom -no-ssc -thresh 1.0 -oc ../data/reference/tomtom_full_out ../data/reference/furbox_query.meme ../data/reference/meme_fur_out/meme.txt

@@ -171,3 +171,19 @@
 - Fur box 서열이 palindrome 구조에서 동일 패턴 반복 서열로 재규명된 과정이 실험을 통해 이루어졌음을 보고, 데이터 기반 해석은 항상 실험으로 재검증해야 한다는 점을 느낌.
 
 ---
+
+## Session — 2026-07-29
+
+### Done
+- Part 2 생물학적 질문(S/N ratio가 높은 사이트만 쓰면 motif가 Fur box에 더 가까워지는가)을 다듬어 확정함.
+- Part 3 분석 계획에 맞춰 pipeline scaffold를 작성함 — S/N ratio 상위 25% 사이트만 추출해 MEME을 재실행하고 기존 143개 결과와 비교함.
+- Day2를 마무리하고 Day3(분석 파이프라인 설계)를 진행 중임.
+
+### Broke / Struggled
+- S/N ratio가 높은 사이트들의 공통 motif가 Fur binding site 서열과 유사할 것이라 예상했으나, 길이도 AT-rich 비율도 예상과 맞지 않았음.
+- 두 그룹의 motif 길이(15bp vs 21bp)가 서로 달라 기존 방식(직접 서열 정렬/AT% 비교)으로는 비교 자체가 불가능했음.
+
+### Learned
+- tomtom과 Pairwise Aligner를 각각 어떤 경우에 써야 하는지 — 길이·방향(strand)이 다른 motif끼리 통계적으로 비교할 때는 tomtom(PWM 기반), 길이가 비슷한 구체적 서열끼리 직접 비교할 때는 Pairwise Aligner가 적합함.
+
+---
