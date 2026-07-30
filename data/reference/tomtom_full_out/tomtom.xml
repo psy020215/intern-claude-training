@@ -24,10 +24,10 @@
     <strands>both</strands>
     <background from="--query--" A="0.25" C="0.25" G="0.25" T="0.25"/>
     <host>codespaces-b37f35</host>
-    <when>Wed Jul 29 06:34:31 2026</when>
+    <when>Thu Jul 30 07:01:55 2026</when>
   </model>
   <query_dbs>
-    <db source="../data/reference/furbox_query.meme" name="furbox_query" loaded="1" excluded="0" last_mod_date="Wed Jul 29 06:34:23 2026"/>
+    <db source="../data/reference/furbox_query.meme" name="furbox_query" loaded="1" excluded="0" last_mod_date="Thu Jul 30 07:01:52 2026"/>
   </query_dbs>
   <target_dbs>
     <db source="../data/reference/meme_fur_out/meme.txt" name="meme.txt" loaded="3" excluded="0" last_mod_date="Fri Jul 24 04:39:30 2026"/>
@@ -135,5 +135,5 @@
       <target idx="0" rc="y" off="-4" pv="8.28e-01" ev="2.48e+00" qv="9.20e-01"/>
     </query>
   </matches>
-  <runtime cycles="138482" seconds="0.138"/>
+  <runtime cycles="47579" seconds="0.048"/>
 </tomtom>
