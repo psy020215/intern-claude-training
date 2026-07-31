@@ -187,3 +187,16 @@
 - tomtom과 Pairwise Aligner를 각각 어떤 경우에 써야 하는지 — 길이·방향(strand)이 다른 motif끼리 통계적으로 비교할 때는 tomtom(PWM 기반), 길이가 비슷한 구체적 서열끼리 직접 비교할 때는 Pairwise Aligner가 적합함.
 
 ---
+
+## Session — 2026-07-31
+
+### Done
+- 진행 조건 설정 및 pipeline 작성.
+
+### Broke / Struggled
+- pipeline 작성 후 Claude를 통해 실행 결과를 확인하는 과정에서 motif의 길이가 서로 다른 것을 발견하여, 비교 조건을 다시 수립함.
+
+### Learned
+- 길이가 다른 motif를 비교할 때 tomtom을 이용하면 기존 서열과의 유사도를 p-value로 확인할 수 있음.
+
+---
