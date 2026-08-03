@@ -200,3 +200,18 @@
 - 길이가 다른 motif를 비교할 때 tomtom을 이용하면 기존 서열과의 유사도를 p-value로 확인할 수 있음.
 
 ---
+
+## Session — 2026-08-03
+
+### Done
+- df_high를 quantile(0.75) 값 기준 대신 sn_decile(qcut) 기준 상위 30%로 통일해 df_top_decile과 같은 방식으로 산출하도록 파이프라인 수정함.
+- 수정된 필터 기준으로 FASTA/MEME/tomtom을 재실행해 data/reference 산출물과 비교 테이블을 갱신함(df_high 36개→43개 사이트로 변경, tomtom p-value 재계산).
+- Part 5 Figure 1에 tomtom 비교 결과를 코드 셀 + 마크다운 표로 정리해 넣음.
+
+### Broke / Struggled
+- 상위 25%→30%로 기준을 바꾸자 오히려 p-value가 더 나빠짐(0.524→0.358 방향은 개선처럼 보이나 여전히 유의하지 않음)—기대와 다른 방향으로 나옴.
+
+### Learned
+- quantile() 값 기준 threshold와 qcut() 순위 기반 분위수 필터링의 차이, 그리고 qcut으로 통일하는 것이 방법론적으로 더 일관적인 이유.
+
+---

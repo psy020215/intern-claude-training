@@ -24,13 +24,13 @@
     <strands>both</strands>
     <background from="--query--" A="0.25" C="0.25" G="0.25" T="0.25"/>
     <host>codespaces-b37f35</host>
-    <when>Fri Jul 31 08:07:19 2026</when>
+    <when>Mon Aug  3 05:40:07 2026</when>
   </model>
   <query_dbs>
     <db source="../data/reference/furbox_query.meme" name="furbox_query" loaded="1" excluded="0" last_mod_date="Fri Jul 31 08:07:14 2026"/>
   </query_dbs>
   <target_dbs>
-    <db source="../data/reference/meme_fur_top_decile_out/meme.txt" name="meme.txt" loaded="3" excluded="0" last_mod_date="Fri Jul 31 08:07:11 2026"/>
+    <db source="../data/reference/meme_fur_top_decile_out/meme.txt" name="meme.txt" loaded="3" excluded="0" last_mod_date="Mon Aug  3 05:40:04 2026"/>
   </target_dbs>
   <queries>
     <motif db="0" id="FurBox_literature" length="19" nsites="1">
@@ -135,5 +135,5 @@
       <target idx="2" rc="y" off="2" pv="9.85e-01" ev="2.96e+00" qv="9.99e-01"/>
     </query>
   </matches>
-  <runtime cycles="43238" seconds="0.043"/>
+  <runtime cycles="55020" seconds="0.055"/>
 </tomtom>
