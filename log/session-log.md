@@ -215,3 +215,18 @@
 - quantile() 값 기준 threshold와 qcut() 순위 기반 분위수 필터링의 차이, 그리고 qcut으로 통일하는 것이 방법론적으로 더 일관적인 이유.
 
 ---
+
+## Session — 2026-08-03 (2)
+
+### Done
+- top 10% 구간의 전사인자(Transcription Unit) 목록 확인.
+- top10%/top30%/full 세 그룹의 tomtom 결과를 비교해, top 30% 구간이 기존(top10%, full)보다 구한 공통 motif의 Fur box 유사도가 더 낮음을 확인하고 그 이유를 분석함 — top 30%는 motif 1~3 전부가 Fur box와 무관한 GC-rich 패턴으로 나타났는데, 이는 상대적으로 신호가 약한 site들이 섞이면서 노이즈 또는 다른 반복 서열 패턴이 더 우세해졌기 때문으로 해석됨.
+
+### Broke / Struggled
+- top 30%의 모든 모티프(motif 1~3)가 Fur box와 무관한 GC-rich 패턴이었음.
+
+### Learned
+- MEME은 단일 대표 패턴만 찾는다는 특성.
+- motif를 구할 때 범위(cutoff) 설정에 주의가 필요함 — 전체 데이터를 쓰면 top10%가 dominant해서 noise나 다른 GC-rich 서열의 영향을 덜 받지만, top30%로 구간을 넓히면 노이즈/다른 요인의 영향을 받아 오히려 유사도가 낮은 motif가 나올 수 있음을 확인함.
+
+---
