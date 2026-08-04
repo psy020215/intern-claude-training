@@ -230,3 +230,16 @@
 - motif를 구할 때 범위(cutoff) 설정에 주의가 필요함 — 전체 데이터를 쓰면 top10%가 dominant해서 noise나 다른 GC-rich 서열의 영향을 덜 받지만, top30%로 구간을 넓히면 노이즈/다른 요인의 영향을 받아 오히려 유사도가 낮은 motif가 나올 수 있음을 확인함.
 
 ---
+
+## Session — 2026-08-04
+
+### Done
+- Fig1 결과 해석, 예상과 다른 결과 요인 찾는중.
+
+### Broke / Struggled
+- full의 best-match motif가 알려진 Fur 유전자와 안 겹침.
+
+### Learned
+- tomtom best-of-3 비교는 배경모델/표본크기에 민감.
+
+---
